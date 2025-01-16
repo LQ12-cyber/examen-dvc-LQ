@@ -1,0 +1,15 @@
+# local package
+-e .
+
+#awscli>=1.29.0
+pandas
+#logging
+numpy 
+scikit-learn
+imbalanced-learn
+joblib
+sklearn.preprocessing
+#sys
+#json
+click
+yaml
