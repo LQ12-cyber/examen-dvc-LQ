@@ -32,6 +32,7 @@ var/
 
 
 # Ignorer les fichiers de données traitées 
+data/raw_data
 data/processed_data/ 
 data/processed_data_scaled/ 
 src/models_output/ 
