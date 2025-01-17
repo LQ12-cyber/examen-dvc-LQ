@@ -5,41 +5,46 @@ stages:
     - data/raw_data
     - src/data/data_split.py
     outs:
-    - data/processed_data
+    - data/processed_data/X_test.csv
+    - data/processed_data/X_train.csv
+    - data/processed_data/y_test.csv
+    - data/processed_data/y_train.csv
   normalize:
     cmd: python src/data/normalize.py
     deps:
-    - data/processed_data
+    - data/processed_data/X_train.csv
+    - data/processed_data/X_test.csv
     - src/data/normalize.py
     outs:
-    - data/processed_data_scaled
+    - data/processed_data_scaled/X_train_scaled.csv
+    - data/processed_data_scaled/X_test_scaled.csv
   gridsearch:
     cmd: python src/data/grid_search.py
     deps:
-    - data/processed_data
-    - data/processed_data_scaled
+    - data/processed_data/y_train.csv
+    - data/processed_data_scaled/X_train_scaled.csv
     - src/data/grid_search.py
-    - src/params
+    - src/params/params.yaml
     outs:
-    - src/params_output
+    - src/params_output/best_params.pkl
   training:
     cmd: python src/models/training.py
     deps:
-    - data/processed_data
-    - data/processed_data_scaled
+    - data/processed_data/y_train.csv
+    - data/processed_data_scaled/X_train_scaled.csv
     - src/models/training.py
-    - src/params_output
+    - src/params_output/best_params.pkl
     outs:
-    - src/models_output
+    - src/models_output/gbr_model.pkl
   evaluate:
     cmd: python src/predicts/evaluate.py
     deps:
-    - data/processed_data
-    - data/processed_data_scaled
-    - src/models_output
+    - data/processed_data/y_test.csv
+    - data/processed_data_scaled/X_test_scaled.csv
+    - src/models_output/gbr_model.pkl
     - src/predicts/evaluate.py
     outs:
-    - src/predicts_output
+    - src/predicts_output/predictions.csv
     metrics:
     - metrics/scores.json:
         cache: false
