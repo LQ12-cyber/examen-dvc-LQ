@@ -26,9 +26,14 @@ var/
 /venv
 /clean_data.csv
 
-# exclude data from source control by default
-#/data/
-
 # Mypy cache
 .mypy_cache/
 *.joblib
+
+
+# Ignorer les fichiers de données traitées 
+data/processed_data/ 
+data/processed_data_scaled/ 
+src/models_output/ 
+src/params_output/ 
+src/predicts_output/
