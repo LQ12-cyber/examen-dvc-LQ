@@ -30,8 +30,7 @@ var/
 .mypy_cache/
 *.joblib
 
-
-# Ignorer les fichiers de données traitées 
+# Fichiers de données
 data/processed_data
 data/processed_data_scaled
 data/raw_data
