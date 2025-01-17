@@ -30,7 +30,10 @@ var/
 .mypy_cache/
 *.joblib
 
-# Fichiers de données
+# Fichiers de données et de sorties
 data/processed_data
 data/processed_data_scaled
 data/raw_data
+src/models_output/ 
+src/params_output/ 
+src/predicts_output/
